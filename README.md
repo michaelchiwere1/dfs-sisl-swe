@@ -130,6 +130,9 @@ Most experiments are configured by editing `integer, parameter` and
 - `JCN_MONIT`: enables monitor output.
 - `JCN_MONIT_SPECTRUM`: enables kinetic-energy spectrum output where present.
 - `INTHR_MONIT`: monitor interval in model hours.
+- `IT`: interpolation method for semi-Lagrangian departure-point fields.
+  Use `IT = 1` for spectral interpolation and `IT = 0` for low-order
+  Lagrange interpolation.
 - `IMAX`, `JMAX`, `NMAX`: horizontal grid and spectral truncation.
 - `TIMESTEP`: model time step in seconds.
 
