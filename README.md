@@ -144,7 +144,7 @@ After changing these constants, rebuild the affected executable.
 ## Output Files
 
 Diagnostics are written as direct-access binary `.dr` files with matching
-GrADS control files (`.ctl` or `.ctl.tmp`). Common outputs include:
+GrADS control files (`.ctl`). Common outputs include:
 
 - `data.dr`: gridded monitor fields.
 - `norm.dr`: norm/error diagnostics.
@@ -153,6 +153,38 @@ GrADS control files (`.ctl` or `.ctl.tmp`). Common outputs include:
 
 The `grads` modules write control files describing the grid, levels, and
 time axis for visualization tools that understand GrADS control files.
+
+## Converting Output To NetCDF
+
+The model writes GrADS datasets as a pair of files: a binary data file
+(`.dr`) and a control file (`.ctl`). Convert these datasets to NetCDF with
+Climate Data Operators (CDO):
+
+```sh
+cdo -f nc import_binary data.ctl data.nc
+```
+
+Run the command from the directory containing both `data.ctl` and
+`data.dr`. The same pattern applies to other outputs:
+
+```sh
+cdo -f nc import_binary norm.ctl norm.nc
+cdo -f nc import_binary spectrum.ctl spectrum.nc
+cdo -f nc import_binary weight_lat.ctl weight_lat.nc
+```
+
+To convert every GrADS control file in a run directory:
+
+```sh
+for ctl in *.ctl; do
+  base=${ctl%.ctl}
+  cdo -f nc import_binary "$ctl" "$base.nc"
+done
+```
+
+If CDO reports a missing data file, check the `DSET` line inside the `.ctl`
+file. It should point to the matching `.dr` file, usually with a relative
+path such as `DSET ^data.dr`.
 
 ## Notes For Maintainers
 
