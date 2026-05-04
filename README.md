@@ -3,9 +3,8 @@
 This repository contains Fortran research code for the global shallow-water equations 
 on the sphere using a spectrally semi-Lagrangian semi-implicit (SISL) formulation. 
 The code supports both double Fourier sphere (DFS) and spherical harmonic transform (SHT) methods for
-computing the spatial derivatives, as implemented by Yoshimura (2022). The main novelty of this model is that it uses spectrally 
-accurate interpolation via DFS for the semi-Lagrangian part that isaccelerated by
-the non-uniform fast Fourier transform (NUFFT).  This differs from standard SISL models that use low-order interpolation.
+computing the spatial derivatives, as implemented by [Yoshimura](https://doi.org/10.5194/gmd-15-2561-2022-supplement). 
+The main novelty of this model is that it uses spectrally accurate interpolation for the semi-Lagrangian part via DFS, which differs from standard SISL models that use low-order interpolation. To make the DFS interpolation compuationally competitive, we use a non-uniform fast Fourier transform (NUFFT), as implemented in [FINUFFT](https://github.com/flatironinstitute/finufft).
 
 The reposistory includes both DFS and SHT formulations, local transform-library dependencies, build scripts, and
 batch-run scripts for several standard test cases in the literature, including Williamson et. al. test cases 1, 2, 5, & 6, and the Galewsky et. al. test case.
@@ -18,11 +17,8 @@ The main model code is split into two formulations:
 The directories `bihar/` and `ispack-3.0.1/` provide the supporting
 transform libraries used by the model builds.
 
-The repository modifies the supplementary code associated with Yoshimura
-(2022), "Improved double Fourier series on a sphere and its application
-to a semi-implicit semi-Lagrangian shallow-water model", Geosci. Model
-Dev., 15, 2561-2597, 2022. The supplement is available at
-https://doi.org/10.5194/gmd-15-2561-2022-supplement.
+The repository modifies the supplementary code associated with [Yoshimura
+(2022)](https://doi.org/10.5194/gmd-15-2561-2022-supplement).
 
 The bundled support libraries should also be cited when they are used:
 `bihar/` contains FFTPACK-style double-precision real, sine, and cosine
