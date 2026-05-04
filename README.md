@@ -1,7 +1,7 @@
 # Spectral Semi-Lagrangian Semi-Implicit Shallow-Water Model Research Code
 
-This repository contains Fortran research code for global shallow-water
-model experiments on the sphere using a spectrally semi-Lagrangian semi-implicit (SISL) formulation. 
+This repository contains Fortran research code for the global shallow-water equations 
+on the sphere using a spectrally semi-Lagrangian semi-implicit (SISL) formulation. 
 The code supports both double Fourier sphere (DFS) and spherical harmonic transform (SHT) methods for
 computing the spatial derivatives, as implemented by Yoshimura (2022). The main novelty of this model is that it uses spectrally 
 accurate interpolation via DFS for the semi-Lagrangian part that isaccelerated by
