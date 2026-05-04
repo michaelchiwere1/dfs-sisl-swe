@@ -1,9 +1,14 @@
-# Shallow-Water Model Research Code
+# Spectral Semi-Lagrangian Semi-Implicit Shallow-Water Model Research Code
 
 This repository contains Fortran research code for global shallow-water
-model experiments on the sphere. It includes two related numerical
-formulations, local transform-library dependencies, build scripts, and
-batch-run scripts for reproducing or extending the experiments.
+model experiments on the sphere using a spectrally semi-Lagrangian semi-implicit (SISL) formulation. 
+The code supports both double Fourier sphere (DFS) and spherical harmonic transform (SHT) methods for
+computing the spatial derivatives, as implemented by Yoshimura (2022). The main novelty of this model is that it uses spectrally 
+accurate interpolation via DFS for the semi-Lagrangian part that isaccelerated by
+the non-uniform fast Fourier transform (NUFFT).  This differs from standard SISL models that use low-order interpolation.
+
+The reposistory includes both DFS and SHT formulations, local transform-library dependencies, build scripts, and
+batch-run scripts for several standard test cases in the literature, including Williamson et. al. test cases 1, 2, 5, & 6, and the Galewsky et. al. test case.
 
 The main model code is split into two formulations:
 
@@ -207,6 +212,17 @@ path such as `DSET ^data.dr`.
   Geosci. Model Dev., 15, 2561-2597,
   https://doi.org/10.5194/gmd-15-2561-2022, 2022. Supplement:
   https://doi.org/10.5194/gmd-15-2561-2022-supplement.
+- D. L. Williamson, J. B. Drake, J. J. Hack, R. Jakob, and P. N. Swarztrauber:
+  A standard test set for numerical approximations to the shallow water equations
+  in spherical geometry, J. of Comp. Phys., 102, 1992.
+- J. Galewsky, R. K. Scott, and L. M. Polvani: An initial-value problem for
+  testing numerical models of the global shallow-water equations, Tellus A: Dyn.
+  Meteorol. Oceanogr., 56, 429–440, 2004.
+- A. H. Barnett, J. Magland, and L. af Klinteberg: A parallel nonuniform fast
+  Fourier transform library based on an “exponential of semicircle” kernel,
+  SIAM J. Sci. Comput., 41, C479–C504, (2019).
+- A. H. Barnett, J. Magland, and L. af Klinteberg: Flatiron Institute nonuniform
+  fast Fourier transform libraries (FINUFFT). https://github. com/flatironinstitute/finufft.
 - Swarztrauber, P. N.: Vectorizing the FFTs, in: Parallel Computations,
   edited by G. Rodrigue, Academic Press, 51-83, 1982. This is the
   reference listed by Netlib for FFTPACK, the FFT package whose real,
